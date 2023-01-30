@@ -1,0 +1,26 @@
+package javadb;
+
+import java.io.*;
+
+public class DatabaseConnecting{
+	public static void main(String[] args) throws Exception
+	{
+		String url = "";
+		String username = "root";
+		String password = "";
+		String query = "SELECT * FROM employees";
+		Class.forName("com.sql.cj.jdbc.Driver");
+		Connection con = DriverManager.getConnection(url, username, password);
+		System.out.println("Connection Established successfully");
+		
+		Statement st = con.createStatement();
+		Result rs = st.executeQuery(query);
+		rs.next();
+		String name = rs.getSTring("name");
+		
+		System.out.println(name);
+		st.close();
+		con.close();
+		System.out.println("Connection closed...");
+	}
+}
